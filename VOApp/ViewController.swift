@@ -14,11 +14,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var containerView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.accessibilityElements = [headingLabel!, nameLabel!, button!, randLabel!]
+
+        let element = UIAccessibilityElement(accessibilityContainer: containerView!)
+        element.accessibilityLabel = "The name is \(nameLabel.text ?? "undefined") and the random number is \(randLabel.text ?? "undefined")"
+        element.accessibilityFrameInContainerSpace = containerView.frame
+        view.accessibilityElements = [element]
     }
 
     @IBAction func genRand(_ sender: Any) {
