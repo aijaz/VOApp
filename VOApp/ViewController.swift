@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var randLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func genRand(_ sender: Any) {
+        let randomInt = Int.random(in: 1..<5)
+        randLabel.text = "\(randomInt)"
+    }
 
 }
 
