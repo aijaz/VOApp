@@ -23,11 +23,14 @@ class ViewController: UIViewController {
         let element = UIAccessibilityElement(accessibilityContainer: containerView!)
         element.accessibilityLabel = "The name is \(nameLabel.text ?? "undefined") and the random number is \(randLabel.text ?? "undefined")"
         element.accessibilityFrameInContainerSpace = containerView.frame
+
+        let action = UIAccessibilityCustomAction(name: "Generate Random Number", target: self, selector: #selector(genRand(_:)))
+        element.accessibilityCustomActions = [action]
         view.accessibilityElements = [element]
     }
 
-    @IBAction func genRand(_ sender: Any) {
-        let randomInt = Int.random(in: 1..<5)
+    @objc @IBAction func genRand(_ sender: Any) {
+        let randomInt = Int.random(in: 1..<50)
         randLabel.text = "\(randomInt)"
     }
 
